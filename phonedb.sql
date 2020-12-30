@@ -31,6 +31,9 @@ insert in to person values(seq_person_id.nextval, '유재석', '010-3333-3333', 
 insert in to person values(seq_person_id.nextval, '이정재', '010-4444-4444', '02-4444-4444');
 insert in to person values(seq_person_id.nextval, '서장훈', '010-5555-5555', '02-5555-5555');
 
+--전화번호부 INSERT
+Insert into person values(seq_person_id.nextval, '강호동', '010-9999-9999', '02-1234-1234');
+
 --전화번호부 SELECT
 select person_id,
        name,
