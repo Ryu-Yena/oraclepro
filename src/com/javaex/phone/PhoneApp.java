@@ -76,16 +76,16 @@ public class PhoneApp {
 			default:
 				System.out.println("[다시 입력해주세요.]");
 			}
+		
+			sc.close();
 		}
 		
 		
 		
 				
 		//리스트 전체 출력
-		System.out.println();
 		
-		
-		sc.close();
+	
 
 	}
 
