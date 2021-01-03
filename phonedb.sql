@@ -39,7 +39,8 @@ select person_id,
        name,
        hp,
        company
-from person;
+from person
+order by person_id;
 
 --전화번호부 UPDATE
 update person

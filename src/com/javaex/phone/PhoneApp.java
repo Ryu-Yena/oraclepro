@@ -31,12 +31,15 @@ public class PhoneApp {
 		//스캐너
 		Scanner sc = new Scanner(System.in);
 		
+		System.out.println("********************************");
+		System.out.println("*        전화번호 관리 프로그램                 *");
+		System.out.println("********************************");
+		System.out.println();
+		
+		
 		while(true) {
 			
-			System.out.println("********************************");
-			System.out.println("*        전화번호 관리 프로그램                 *");
-			System.out.println("********************************");
-			System.out.println();
+			
 			System.out.println(" 1.리스트   2.등록   3.삭제   4.검색   5.종료");
 			System.out.println("---------------------------------");
 			System.out.print(">메뉴번호: ");
@@ -45,26 +48,79 @@ public class PhoneApp {
 			
 			switch(num) {
 			case 1:
+				System.out.println("<1.리스트>");
 				//리스트
 				phoneList = phoneDao.getPhoneList();
 				//리스트 전체 출력
-				System.out.println("<1.리스트>");
 				for(int i=0;i<phoneList.size(); i++) {
 					PersonVo vo = phoneList.get(i);
 					System.out.println(vo.getPersonid() + ", " + vo.getName() + ", " + vo.getHp() + ", " + vo.getCompany());
 				}
 				
 			case 2:
+				System.out.println("<2.등록>");
 				//등록
 				
+				System.out.println("이름> ");
+				String name = sc.nextLine();
+				
+				System.out.println("휴대전화> ");
+				String hp = sc.nextLine();
+				
+				System.out.println("회사번호> ");
+				String company = sc.nextLine();
+				
+				
+				PersonVo personVo = new PersonVo(name, hp, company);
+				phoneDao.personInsert(personVo);
+				
+				
+				
 			case 3:
+				System.out.println("<3.수정>");
 				//수정
 				
+				System.out.println("번호> ");
+				int personId = sc.nextInt();
+				
+				sc.nextLine();
+				
+				System.out.println("이름> ");
+				String name = sc.nextLine();
+				
+				System.out.println("휴대전화> ");
+				String hp = sc.nextLine();
+				
+				System.out.println("회사전화> ");
+				String company = sc.nextLine();
+				
+				PersonVo personVo = new PersonVo(personId, name, hp, company);
+				phoneDao.personUpdate(personVo);
+				
+				
+				
 			case 4:
+				System.out.println("<4.삭제>");
 				//삭제
-				phoneDao.personDelete(2);
+				
+				System.out.println("번호> ");
+				int personId = sc.nextInt();
+				
+				phoneDao.personDelete(personId);
+				
+				
 			case 5:
+				System.out.println("<5.검색>");
 				//검색
+				System.out.println("검색어> ");
+				String str = sc.nextLine();
+				
+				phoneList = phoneDao.getSearchList(str);
+				for(int i=0; i <phoneList.size();i++) {
+					PersonVo personVo = phoneList.get(i);
+					System.out.println(personVo.getPersonid() + ", " + personVo.getName() + ", " + personVo.getHp() + ", " + personVo.getCompany());
+				}
+				System.out.println("");
 				
 			case 6:
 				//종료
@@ -77,16 +133,10 @@ public class PhoneApp {
 				System.out.println("[다시 입력해주세요.]");
 			}
 		
-			sc.close();
 		}
 		
+		sc.close();
 		
-		
-				
-		//리스트 전체 출력
-		
-	
-
 	}
 
 }
